@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>MatchTeam.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MatchTeam.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.demo</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">com.fasterxml.jackson.databind.deser.DataFormatReaders</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.http.ResponseEntity</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.client.RestTemplate</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+
+
+<span class="s0">public class </span><span class="s1">MatchTeam {</span>
+    <span class="s0">public static int </span><span class="s1">getGoalTeam1(){</span>
+        <span class="s1">String url = </span><span class="s2">&quot;https://jsonmock.hackerrank.com/api/football_matches?&quot;</span><span class="s0">;</span>
+        <span class="s1">RestTemplate restTemplate = </span><span class="s0">new </span><span class="s1">RestTemplate()</span><span class="s0">;</span>
+        <span class="s1">ResponseEntity&lt;Page1&gt; response = restTemplate.getForEntity(url</span><span class="s0">, </span><span class="s1">Page1.</span><span class="s0">class</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Page1 res = response.getBody()</span><span class="s0">;</span>
+        <span class="s1">List&lt;DataFormatReaders.Match&gt; matches = res.data</span><span class="s0">;</span>
+        <span class="s0">int </span><span class="s1">nbrGoalTeam1 = </span><span class="s3">0</span><span class="s0">;</span>
+        <span class="s0">for </span><span class="s1">(DataFormatReaders.Match m : matches){</span>
+            <span class="s1">nbrGoalTeam1+=m.team1goals</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">nbrGoalTeam1</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">public static int </span><span class="s1">getGoalTeam2(){</span>
+        <span class="s1">String url = </span><span class="s2">&quot;https://jsonmock.hackerrank.com/api/football_matches?&quot;</span><span class="s0">;</span>
+        <span class="s1">RestTemplate restTemplate = </span><span class="s0">new </span><span class="s1">RestTemplate()</span><span class="s0">;</span>
+        <span class="s1">ResponseEntity&lt;Page1&gt; response = restTemplate.getForEntity(url</span><span class="s0">, </span><span class="s1">Page1.</span><span class="s0">class</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Page1 res = response.getBody()</span><span class="s0">;</span>
+        <span class="s1">List&lt;DataFormatReaders.Match&gt; matches = res.data</span><span class="s0">;</span>
+        <span class="s0">int </span><span class="s1">nbrGoalTeam2 = </span><span class="s3">0</span><span class="s0">;</span>
+        <span class="s0">for </span><span class="s1">(DataFormatReaders.Match m : matches){</span>
+            <span class="s1">nbrGoalTeam2+=m.team2goals</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">nbrGoalTeam2</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
